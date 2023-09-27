@@ -4,6 +4,7 @@ const taskList = document.querySelector(".taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+//local storage saving
 function local() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -19,13 +20,13 @@ function renderTask() {
       <input type="checkbox" class="checkbox" ${task.completed ? 'checked="checked"' : ''}>
       <span class="text"> ${task.text}</span>
 
-      <button class="editButton" > ✏️</button>
+      <button class="editButton" >✏️</button>
 
       
       <button class="deleteButton">🗑️</button>
     `;
 
-    // EDIT - DELETE
+    // EDIT - DELETE button functions
 
     const editButton = item.querySelector(".editButton");
     const deleteButton = item.querySelector(".deleteButton");
@@ -52,7 +53,9 @@ function renderTask() {
       local();
       renderTask();
     });
-
+    
+//checkbox
+    
     const checkbox = item.querySelector(".checkbox");
     checkbox.addEventListener("change", () => {
       task.completed = checkbox.checked;
@@ -64,6 +67,7 @@ function renderTask() {
   });
 }
 
+//add button function
 addButton.addEventListener('click', () => {
   const taskText = inputButton.value.trim();
   if (taskText) {
